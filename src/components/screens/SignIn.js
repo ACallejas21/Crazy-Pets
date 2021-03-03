@@ -11,13 +11,15 @@ import SigninForm from "../forms/SignInForm";
 
 const { width, height } = Dimensions.get("screen");
 
-const Login = () => {
+const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Logo />
       <SigninForm />
         <Text style={styles.forgotPassword}>Recuperación de contraseña</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
             <Text style={styles.signUp}>Registrate</Text>
+        </TouchableOpacity>
     </View>
   );
 };
