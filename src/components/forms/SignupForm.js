@@ -28,28 +28,24 @@ const SignupForm = () => {
         leftIcon={<Icon name="user" />}
         value={user}
         onChangeText={setUser}
-        label="Usuario"
       />
       <Input
         placeholder="Correo Electrónico"
         leftIcon={<Icon name="envelope" />}
         value={email}
         onChangeText={setEmail}
-        label="Correo Electrónico"
       />
       <Input
         placeholder="Contraseña"
         leftIcon={<Icon name="lock" />}
         value={password}
         onChangeText={setPassword}
-        label="Contraseña"
       />
       <Input
         placeholder="confirme su contraseña"
         leftIcon={<Icon name="lock" />}
         value={confirmPassword}
         onChangeText={setConfirmPassword}
-        label="confimre su contraseña"
       />
       <Button title="Create account" onPress={handleSignup} />
     </View>

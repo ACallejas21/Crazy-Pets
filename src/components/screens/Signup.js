@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get("screen");
 const Signup = ({ navigation }) => {
   return (
     <View>
-      <Logo />
+      <Logo/>
       <SignupForm />
       <TouchableOpacity
         onPress={() => {
