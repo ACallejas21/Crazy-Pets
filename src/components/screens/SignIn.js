@@ -11,15 +11,13 @@ import SigninForm from "../forms/SignInForm";
 
 const { width, height } = Dimensions.get("screen");
 
-const Login = ({ navigation }) => {
+const Login = () => {
   return (
     <View style={styles.container}>
       <Logo />
       <SigninForm />
-        <Text style={styles.forgotPassword}>Recuperacion</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-            <Text>Registrate</Text>
-        </TouchableOpacity>
+        <Text style={styles.forgotPassword}>Recuperación de contraseña</Text>
+            <Text style={styles.signUp}>Registrate</Text>
     </View>
   );
 };
@@ -31,7 +29,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   forgotPassword: {
-    textAlign: "right",
+    textAlign: "center",
+    padding: 5,
+  },
+  signUp: {
+    textAlign: "center",
+    padding: 50,
   },
 });
 
