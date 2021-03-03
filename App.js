@@ -5,6 +5,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Signup from "./src/components/screens/Signup";
+import Signin from "./src/components/screens/SignIn";
+import Home from "./src/components/screens/home";
+import Addpets from "./src/components/screens/addPets";
+import Detailspets from "./src/components/screens/detailsPets";
+import Tips from "./src/components/screens/tips";
+import PasswordRecovery from "./src/components/screens/passwordRecovery";
 import theme from "./src/theme";
 
 const Stack = createStackNavigator();
@@ -14,8 +20,14 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="signup">
+          <Stack.Navigator initialRouteName="Signin">
+            <Stack.Screen name="Signin" component={Signin} />
             <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Addpets" component={Addpets} />
+            <Stack.Screen name="Detailspets" component={Detailspets} />
+            <Stack.Screen name="Tips" component={Tips} />
+            <Stack.Screen name="PasswordRecovery" component={PasswordRecovery}/>
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
