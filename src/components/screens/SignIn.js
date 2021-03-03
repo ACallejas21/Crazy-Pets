@@ -6,7 +6,7 @@ import {
   View,
   Text } from "react-native";
 import { Input, Button } from "react-native-elements";
-import Logo from "../shared/logo";
+import Logo from "../shared/Logo.js";
 import SigninForm from "../forms/SignInForm";
 
 const { width, height } = Dimensions.get("screen");
