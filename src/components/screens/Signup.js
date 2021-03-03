@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Dimensions, StyleSheet, TouchableOpacity, ScrollView} from "react-native";
 import { Button, Input, Text } from "react-native-elements";
 import Logo from "../shared/Logo";
 import SignupForm from "../forms/SignupForm";
@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get("screen");
 
 const Signup = ({ navigation }) => {
   return (
-    <View>
+    <ScrollView>
       <Logo/>
       <SignupForm />
       <TouchableOpacity
@@ -18,7 +18,7 @@ const Signup = ({ navigation }) => {
       >
         <Text>Inicio Sesión</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
