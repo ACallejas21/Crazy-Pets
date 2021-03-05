@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Input, Button, Text } from "react-native-elements";
+import { Input, Button, Text,SocialIcon } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { firebase } from "../../firebase";
 import { validate } from "email-validator";
+import "firebase/auth"
 
 const SignupForm = () => {
   const [user, setUser] = useState("");
@@ -15,6 +16,7 @@ const SignupForm = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const provider = new firebase.auth.GoogleAuthProvider()
 
    // Verifica que los datos ingresados sean correctos
    const handleVerify = (input) => {
@@ -49,6 +51,35 @@ const SignupForm = () => {
       })
       .catch((error) => console.log(error));
   };
+  const handlerSingupwithgoogle = () => {
+    firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+    navigator.navigate("Home")
+    console.log("bien");
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+    console.log(errorCode);
+    console.log(errorMessage);
+    console.log(email);
+    console.log(credential);
+  });
+  }
 
   return (
     <View>
@@ -102,6 +133,8 @@ const SignupForm = () => {
         }
       />
       <Button title="Crear Cuenta" onPress={handleSignup} />
+      <Text>Ó</Text>
+      <SocialIcon type='google' button title='Google' onPress={handlerSingupwithgoogle}></SocialIcon>
     </View>
   );
 };

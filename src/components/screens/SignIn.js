@@ -1,6 +1,12 @@
 import React from "react";
-import { Dimensions,  StyleSheet, TouchableOpacity, View, Text } from "react-native";
-import Logo from "../shared/logo";
+import {
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Text } from "react-native";
+import { Input, Button } from "react-native-elements";
+import Logo from "../shared/Logo.js";
 import SigninForm from "../forms/SignInForm";
 import theme from "../../theme/index";
 import Alert from "../shared/alert";
