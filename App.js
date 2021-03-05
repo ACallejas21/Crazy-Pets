@@ -21,7 +21,8 @@ export default function App() {
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Signin">
-            <Stack.Screen name="Signin" component={Signin} />
+            <Stack.Screen name="Signin" component={Signin} initialParams={{ userCreated: false }}
+              options={{ headerShown: false }} />
             <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Addpets" component={Addpets} />
