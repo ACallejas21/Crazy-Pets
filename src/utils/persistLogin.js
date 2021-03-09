@@ -3,7 +3,7 @@ import { firebase } from "../firebase";
 // Permite verificar si un usuario ya ha iniciado sesión
 // y evitar solicitar nuevamente las credenciales
 const PersistLogin = () => {
-  const userRef = firebase.firestore().collection("users");
+  const userRef = firebase.firestore().collection("usuarios");
 
   // Si el usuario ya se ha autenticado previamente, retornar
   // la información del usuario, caso contrario,retonar un objeto vacío.
