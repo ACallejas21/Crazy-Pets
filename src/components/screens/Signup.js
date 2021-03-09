@@ -1,7 +1,7 @@
 import React from "react";
 import { Dimensions, StyleSheet, TouchableOpacity, View, ScrollView} from "react-native";
 import { Button, Input, Text } from "react-native-elements";
-import Logo from "../shared/Logo.js";
+import Logo from "../shared/logo.js";
 import SignupForm from "../forms/SignupForm";
 
 const { width, height } = Dimensions.get("screen");
@@ -11,7 +11,7 @@ const Signup = ({ navigation }) => {
 
       <ScrollView style={styles.container}>
         <Logo/>
-        <SignupForm />
+        <SignupForm navigation={navigation}/>
         <TouchableOpacity
           onPress={() => {
             navigation.goBack();
