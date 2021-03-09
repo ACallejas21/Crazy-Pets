@@ -29,8 +29,27 @@ const SigninForm = ({navigation}) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((response) => { 
-      
+      .then(() => { 
+        const uid = response.user.uid;
+        const usersRef = firebase.firestore().collection("usuarios");
+
+        // Verificar que el usuario existe en Firebase authentication
+        // y también está almacenado en la colección de usuarios.
+        usersRef
+          .doc(uid)
+          .get()
+          .then((firestoreDocument) => {
+            if (!firestoreDocument.exists) {
+              setError("User does not exist in the database!");
+              return;
+            }
+
+            // Obtener la información del usuario y enviarla a la pantalla Home
+            const user = firestoreDocument.data();
+
+            navigation.navigate("Home", { user });
+          });
+
       })
       .catch((error) => {
         console.log(error);
@@ -61,6 +80,7 @@ const SigninForm = ({navigation}) => {
         leftIcon={<Icon name="lock" />}
         value={password}
         onChangeText={setPassword}
+        secureTextEntry={true}
         onBlur={() => {
           handleVerify("password");
         }}
@@ -71,10 +91,6 @@ const SigninForm = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  buttom:{
-    borderRadius: 45,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default SigninForm;

@@ -10,7 +10,7 @@ const PasswordRecovery = ({navigation}) => {
    return (
     <View style={styles.container}>
       <Logo/>
-      <PasswordRecoveryForm />
+      <PasswordRecoveryForm navigation={navigation}/>
       <TouchableOpacity onPress={() => {navigation.goBack()}}>
       <Text style={styles.Text}>Inicio Sesión</Text>
       </TouchableOpacity>

@@ -10,7 +10,7 @@ import "@firebase/auth";
 
 const { width, height } = Dimensions.get("screen");
 
-const PasswordRecoveryForm = () => {
+const PasswordRecoveryForm = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -25,11 +25,15 @@ const PasswordRecoveryForm = () => {
    };
 
   const handleEmailRecovery = () => {
-   firebase.auth().sendPasswordResetEmail(email).then(function() {
-    console.log("Enviado")
-  }).catch(function(error) {
-    console.log("error")
-  });
+   firebase
+   .auth()
+   .sendPasswordResetEmail(email)
+   .then(() => {
+    navigation.navigate("Signin");
+    })
+    .catch(function(error) {
+      setError(error.message);
+    });
   }
 
   return (
@@ -38,7 +42,7 @@ const PasswordRecoveryForm = () => {
         {error ? <Alert title={error} type="error" /> : null}
         <Input
         placeholder="Correo"
-        leftIcon={<Icon name="envelope" />}
+        leftIcon={<Icon name="envelope"/>}
         value={email}
         onChangeText={setEmail}
         onBlur={() => {
