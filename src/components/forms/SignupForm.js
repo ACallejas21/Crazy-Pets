@@ -6,7 +6,7 @@ import { firebase } from "../../firebase";
 import { validate } from "email-validator";
 import "firebase/auth"
 
-const SignupForm = () => {
+const SignupForm = ({ navigation }) => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +16,9 @@ const SignupForm = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+
+  const [error, setError] = useState("");
+
   const provider = new firebase.auth.GoogleAuthProvider()
 
    // Verifica que los datos ingresados sean correctos
@@ -47,24 +50,68 @@ const SignupForm = () => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((response) => {
-        console.log(response);
+        // Obtener el Unique Identifier generado para cada usuario
+        // Firebase -> Authentication
+        const uid = response.user.uid;
+
+        // Construir el objeto que le enviaremos a la collección de "users"
+        const data = {
+          id: uid,
+          email,
+          user
+        };
+
+        // Obtener la colección desde Firebase
+        const usersRef = firebase.firestore().collection("usuarios");
+
+        // Almacenar la información del usuario que se registra en Firestore
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then(() => {
+            console.log("hola");
+            navigation.navigate("Signin");
+          })
+          .catch((error) => {
+            console.log(error);
+            setError(error.message);
+          });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setError(error.message));
   };
+
   const handlerSingupwithgoogle = () => {
     firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
     var credential = result.credential;
-
     // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = credential.accessToken;
+   var token = credential.accessToken;
     // The signed-in user info.
-    var user = result.user;
     // ...
-    navigator.navigate("Home")
-    console.log("bien");
+    const uid = result.user.uid;
+    const email = result.user.email;
+    const user = result.user.displayName;
+
+  
+    const data = {
+      id: uid,
+      email : email,
+      user : user
+    };
+
+    // Obtener la colección desde Firebase
+    const usersRef = firebase.firestore().collection("usuarios");
+
+    // Almacenar la información del usuario que se registra en Firestore
+    usersRef
+      .doc(uid)
+      .set(data)
+      .then(() => {
+        console.log("hola");
+        navigation.navigate("Home");
+      })
   }).catch((error) => {
     // Handle Errors here.
     var errorCode = error.code;
@@ -113,6 +160,7 @@ const SignupForm = () => {
         leftIcon={<Icon name="lock" />}
         value={password}
         onChangeText={setPassword}
+        secureTextEntry={true}
         onBlur={() => {
           handleVerify("password");
         }}
@@ -125,6 +173,7 @@ const SignupForm = () => {
         leftIcon={<Icon name="lock" />}
         value={confirmPassword}
         onChangeText={setConfirmPassword}
+        secureTextEntry={true}
         onBlur={() => {
           handleVerify("confirmPassword");
         }}
