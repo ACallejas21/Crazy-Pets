@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { validate } from "email-validator";
 import {firebase} from "../../firebase";
 import Alert from "../shared/alert";
+import "firebase/auth"
 
 const SigninForm = ({navigation}) => {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const SigninForm = ({navigation}) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => { 
+      .then((response) => { 
         const uid = response.user.uid;
         const usersRef = firebase.firestore().collection("usuarios");
 
@@ -57,6 +58,57 @@ const SigninForm = ({navigation}) => {
       }); 
           
   };
+
+  const handlerSingupwithgoogle = () => {
+    firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+    // This gives you a Google Access Token. You can use it to access the Google API.
+   var token = credential.accessToken;
+    // The signed-in user info.
+    // ...
+    const uid = result.user.uid;
+    const email = result.user.email;
+    const user = result.user.displayName;
+
+  
+    const data = {
+      id: uid,
+      email : email,
+      user : user
+    };
+
+    // Obtener la colección desde Firebase
+    const usersRef = firebase.firestore().collection("usuarios");
+
+    // Almacenar la información del usuario que se registra en Firestore
+    usersRef
+      .doc(uid)
+      .set(data)
+      .then(() => {
+        console.log("hola");
+        navigation.navigate("Home");
+      })
+    navigation.navigate("Home");
+
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+    console.log(errorCode);
+    console.log(errorMessage);
+    console.log(email);
+    console.log(credential);
+  });
+  }
+  const provider = new firebase.auth.GoogleAuthProvider()
 
   return (
     <View>
@@ -87,6 +139,8 @@ const SigninForm = ({navigation}) => {
         errorMessage={passwordError ? "Por favor ingresa tu contraseña" : null}
       />
       <Button title="Iniciar Sesión" onPress={handleSignin} />
+
+      <Button title="Google" onPress={handlerSingupwithgoogle} />
     </View>
   );
 };
