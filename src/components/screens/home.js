@@ -14,18 +14,6 @@ const { width, height } = Dimensions.get("screen");
 
 const Home = ({navigation}) => {
 
-  const [error, setError] = useState(false);
-
-
-  const handleSignin = () => {
-    firebase.auth().signOut().then(() => {
-      navigation.navigate("Signin");
-      console.log("Cerro Sesion");
-    }).catch((error) => {
-      console.log("Error");
-    });
-          
-  };
   return (
     <View styles={styles.conteiner}>
       <Header>
