@@ -63,7 +63,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Signin">
+          <Stack.Navigator initialRouteName="Signin" 
+                          screenOptions={{
+                          headerShown: false
+                          }}>
               <Stack.Screen name="Home" component={myTabBar} initialParams={{ user: user }} />
               <Stack.Screen name="Addpets" component={Addpets} />
               <Stack.Screen name="Detailspets" component={myTabBar} />
