@@ -17,7 +17,7 @@ const Signup = ({ navigation }) => {
             navigation.goBack();
           }}
         >
-          <Text>Inicio Sesión</Text>
+          <Text style={styles.text}>Inicio Sesión</Text>
         </TouchableOpacity>
       </ScrollView>
     
@@ -26,8 +26,17 @@ const Signup = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 30,
     flex: 1,
     padding: 10,
+    
+  },
+  text: {
+    marginBottom: 30,
+    textAlign: "center",
+    marginTop: width*0.04,
+    fontSize: 15,
+
   },
 });
 
