@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions} from "react-native";
 import { Input, Button, Text,SocialIcon } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { firebase } from "../../firebase";
 import { validate } from "email-validator";
 import "firebase/auth"
+
+const { width, height } = Dimensions.get("screen");
 
 const SignupForm = ({ navigation }) => {
   const [user, setUser] = useState("");
@@ -18,6 +20,7 @@ const SignupForm = ({ navigation }) => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
 
   const [error, setError] = useState("");
+  
 
   const provider = new firebase.auth.GoogleAuthProvider()
 
@@ -70,7 +73,7 @@ const SignupForm = ({ navigation }) => {
           .set(data)
           .then(() => {
             console.log("hola");
-            navigation.navigate("Signin");
+            navigation.navigate("Home");
           })
           .catch((error) => {
             console.log(error);
@@ -130,7 +133,7 @@ const SignupForm = ({ navigation }) => {
 
   return (
     <View>
-        <Text h5>Crea tu cuenta ahora</Text>
+        <Text style={styles.text} h5>Crea tu cuenta ahora</Text>
       <Input
         placeholder="usuario"
         leftIcon={<Icon name="user" />}
@@ -182,12 +185,20 @@ const SignupForm = ({ navigation }) => {
         }
       />
       <Button title="Crear Cuenta" onPress={handleSignup} />
-      <Text>Ó</Text>
-      <SocialIcon type='google' button title='Google' onPress={handlerSingupwithgoogle}></SocialIcon>
+      <Text style={styles.text}>Ó</Text>
+      <Button title='Google' onPress={handlerSingupwithgoogle}/>
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    textAlign: "center",
+    marginTop: width*0.04,
+    fontSize: 15,
+    marginBottom: width*0.04
+
+  },
+});
 
 export default SignupForm;
