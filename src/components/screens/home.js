@@ -6,8 +6,9 @@ import {
   View, 
   Image, 
   Button} from "react-native";
-import { Avatar, ListItem, Header, Icon } from 'react-native-elements'
-import {firebase} from "../../firebase"
+import { Avatar, ListItem, Header, Icon } from 'react-native-elements';
+import {firebase} from "../../firebase";
+import CardPets from "../forms/card";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -27,20 +28,10 @@ const Home = ({navigation}) => {
   };
   return (
     <View styles={styles.conteiner}>
-    <Header>
-      <Text>Crazy Pets</Text>
-   </Header>
-      <ListItem>
-  <Avatar
-    title={"Hola"}
-    source={{ uri: ("../../../assets/logo.png") }}
-  />
-  <ListItem.Content>
-    <ListItem.Title>{"Hola"}</ListItem.Title>
-  </ListItem.Content>
-  <ListItem.Chevron/>
-  </ListItem>
-  <Button title="Cerrar Sesión" onPress={handleSignin} />
+      <Header>
+        <Text style={styles.header}>Crazy Pets</Text>
+    </Header>
+   <CardPets/>
     </View>
   );
 };
@@ -50,6 +41,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
     marginTop: width*0.5,
+  },
+  header:{
+    color: "#fff",
   },
   
 });

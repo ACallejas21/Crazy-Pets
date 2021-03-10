@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions, Text } from "react-native";
 import { Input, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { validate } from "email-validator";
 import {firebase} from "../../firebase";
 import Alert from "../shared/alert";
-import "firebase/auth"
+import "firebase/auth";
+
+
+const { width, height } = Dimensions.get("screen");
 
 const SigninForm = ({navigation}) => {
   const [email, setEmail] = useState("");
@@ -139,12 +142,20 @@ const SigninForm = ({navigation}) => {
         errorMessage={passwordError ? "Por favor ingresa tu contraseña" : null}
       />
       <Button title="Iniciar Sesión" onPress={handleSignin} />
-
+      <Text style={styles.signUpGoogle}>Ó</Text>
       <Button title="Google" onPress={handlerSingupwithgoogle} />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  signUpGoogle: {
+    textAlign: "center",
+    marginTop: width*0.04,
+    marginBottom: width*0.04,
+    fontSize: 15,
+  
+  },
+});
 
 export default SigninForm;
