@@ -1,4 +1,4 @@
-import { firebase } from "../firebase";
+import { firebase } from ".";
 
 // Permite verificar si un usuario ya ha iniciado sesión
 // y evitar solicitar nuevamente las credenciales
