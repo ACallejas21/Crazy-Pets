@@ -7,9 +7,9 @@ const petReducer = (state, action) => {
     case "errorMessage":
       return { ...state, errorMessage: action.payload };
     case "createPet":
-      return { ...state, notes: [...notes, action.payload] };
+      return { ...state, pets: [...pets, action.payload] };
     case "getPets":
-      return { ...state, notes: action.payload };
+      return { ...state, pets: action.payload };
     default:
       return state;
   }
@@ -62,7 +62,7 @@ const getPets = (dispatch) => (userId) => {
 
 // Exportar las funcionalidades requeridas al contexto
 export const { Provider, Context } = createDataContext(
-  PetReducer,
+  petReducer,
   {
     createPet,
     getPets,
