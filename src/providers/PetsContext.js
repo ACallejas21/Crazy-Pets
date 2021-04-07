@@ -41,7 +41,6 @@ const createPet = (dispatch) => (title, content, timestamp, author) => {
 const getPets = (dispatch) => (userId) => {
     PetsRef
     .where("id", "==", userId)
-    .orderBy("timestamp", "desc")
     .onSnapshot(
       (querySnapshot) => {
         const pets = [];
@@ -49,10 +48,10 @@ const getPets = (dispatch) => (userId) => {
         querySnapshot.forEach((doc) => {
           const pet = doc.data();
           pet.id = doc.id;
-          pets.push(note);
+          pets.push(pet);
         });
 
-        dispatch({ type: "getPets", payload: notes });
+        dispatch({ type: "getPets", payload: pets });
       },
       (error) => {
         dispatch({ type: "errorMessage", payload: error.message });
