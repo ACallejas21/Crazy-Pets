@@ -8,6 +8,8 @@ const authReducer = (state, action) => {
       return { ...state, errorMessage: action.payload };
     case "signin":
       return { ...state, user: action.payload, loggedIn: true };
+      case "signingoogle":
+        return { ...state, user: action.payload, loggedIn: true };
     case "signout":
       return { ...state, user: action.payload, loggedIn: false };
     case "persistLogin":
@@ -18,6 +20,12 @@ const authReducer = (state, action) => {
         loading: false,
       };
     case "signup":
+      return {
+        ...state,
+        user: action.payload.user,
+        registered: true,
+      };
+      case "signupgoogle":
       return {
         ...state,
         user: action.payload.user,
@@ -143,6 +151,90 @@ const signup = (dispatch) => (fullname, email, password) => {
   dispatch({ type: "errorMessage", payload: error.message });
 };
 
+
+//Se registra usando google
+const userprovider = new firebase.auth.GoogleAuthProvider()
+
+const signupgoogle = (dispatch) => () => {
+  firebase.auth()
+    .signInWithPopup(userprovider)
+    .then((result) => {
+      /** @type {firebase.auth.OAuthCredential} */
+      var credential = result.credential;
+      // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = credential.accessToken;
+      // The signed-in user info.
+      // ...
+      const uid = result.user.uid;
+      const email = result.user.email;
+      const user = result.user.displayName;
+
+  
+    const data = {
+      id: uid,
+      email : email,
+      user : user
+    };
+
+    // Obtener la colección desde Firebase
+    const usersRef = firebase.firestore().collection("usuarios");
+
+    // Almacenar la información del usuario que se registra en Firestore
+    usersRef
+        .doc(uid)
+        .set(data)
+        .then(() => {
+          dispatch({
+            type: "signupgoogle",
+            payload: { user: data, registered: true },
+          });
+        })
+        .catch((error) => {
+         // dispatch({ type: "errorMessage", payload: error.message });
+        });
+    });
+  //dispatch({ type: "errorMessage", payload: error.message });
+}
+
+//Inicia Sesion Usando Google
+const signingoogle = (dispatch) => () => {
+  firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+    // This gives you a Google Access Token. You can use it to access the Google API.
+   var token = credential.accessToken;
+    // The signed-in user info.
+    // ...
+    const uid = result.user.uid;
+    const email = result.user.email;
+    const user = result.user.displayName;
+
+  
+    const data = {
+      id: uid,
+      email : email,
+      user : user
+    };
+
+    // Obtener la colección desde Firebase
+    const usersRef = firebase.firestore().collection("usuarios");
+
+    // Almacenar la información del usuario que se registra en Firestore
+    usersRef
+      .doc(uid)
+      .set(data)
+      .then((firestoreDocument) => {
+       
+      });
+  })
+  .catch((error) => {
+    dispatch({ type: "errorMessage", payload: error.message });
+  });
+};
+  const provider = new firebase.auth.GoogleAuthProvider()
+
 const clearErrorMessage = (dispatch) => () => {
   dispatch({ type: "errorMessage", payload: "" });
 };
@@ -156,6 +248,8 @@ export const { Provider, Context } = createDataContext(
     persistLogin,
     signup,
     clearErrorMessage,
+    signupgoogle,
+    signingoogle,
   },
   {
     user: {},
