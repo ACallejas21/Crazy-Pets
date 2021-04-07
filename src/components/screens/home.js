@@ -17,7 +17,6 @@ const { width, height } = Dimensions.get("screen");
 const Home = ({navigation}) => {
   const { state, signout } = useContext(AuthContext);
   const { state: petsState, getPets} = useContext(PetsContext);
-
   useEffect(() => {
     getPets(state.user.id);
   }, []);
@@ -27,13 +26,15 @@ const Home = ({navigation}) => {
       <Header>
         <Text style={styles.header}>Crazy Pets</Text>
     </Header>
-    <PetList notes={petsState.pets} navigation={navigation} />
+    <PetList pets={petsState.pets} navigation={navigation} />
     <Button title="cerrar sesión"  onPress={() => {
               signout();
             }} />
     </View>
+    
   );
 };
+
 
 const styles = StyleSheet.create({
   conteiner:{
