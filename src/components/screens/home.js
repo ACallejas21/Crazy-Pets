@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect,useContext, useState} from "react";
 import {
   Dimensions,
   StyleSheet,
@@ -8,18 +8,29 @@ import {
   Button} from "react-native";
 import { Avatar, ListItem, Header, Icon } from 'react-native-elements';
 import {firebase} from "../../firebase";
-import CardPets from "../forms/card";
+import PetList from "../shared/petList";
+import { Context as AuthContext } from "../../providers/AuthContext";
+import { Context as PetsContext } from "../../providers/PetsContext";
 
 const { width, height } = Dimensions.get("screen");
 
 const Home = ({navigation}) => {
+  const { state, signout } = useContext(AuthContext);
+  const { state: petsState, getPets} = useContext(PetsContext);
+
+  useEffect(() => {
+    getPets(state.user.id);
+  }, []);
 
   return (
     <View styles={styles.conteiner}>
       <Header>
         <Text style={styles.header}>Crazy Pets</Text>
     </Header>
-   <CardPets/>
+    <PetList notes={petsState.pets} navigation={navigation} />
+    <Button title="cerrar sesión"  onPress={() => {
+              signout();
+            }} />
     </View>
   );
 };
