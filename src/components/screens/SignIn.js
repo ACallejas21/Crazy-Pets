@@ -7,16 +7,12 @@ import Logo from "../shared/logo";
 
 const { width, height } = Dimensions.get("screen");
 
-const Login = ({ navigation, route }) => {
-  const { userCreated } = route.params;
+const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Logo/>
-      {userCreated ? (
-        <Alert type="success" title="Cuenta creada exitosamente." />
-      ) : null}
       <SigninForm navigation={navigation} />
-      <TouchableOpacity onPress={() => navigation.navigate("PasswordRecovery")}>
+      <TouchableOpacity onPress={() => navigation.navigate("passwordRecovery")}>
         <Text style={styles.forgotPassword}>Recuperación de contraseña</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
