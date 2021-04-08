@@ -115,7 +115,7 @@ const persistLogin = (dispatch) => () => {
   });
 };
 
-const signup = (dispatch) => (fullname, email, password) => {
+const signup = (dispatch) => (user, email, password) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -128,7 +128,7 @@ const signup = (dispatch) => (fullname, email, password) => {
       const data = {
         id: uid,
         email,
-        fullname,
+        user,
       };
 
       // Obtener la colección desde Firebase
@@ -145,10 +145,10 @@ const signup = (dispatch) => (fullname, email, password) => {
           });
         })
         .catch((error) => {
-          dispatch({ type: "errorMessage", payload: error.message });
+         // dispatch({ type: "errorMessage", payload: error.message });
         });
     });
-  dispatch({ type: "errorMessage", payload: error.message });
+ // dispatch({ type: "errorMessage", payload: error.message });
 };
 
 
