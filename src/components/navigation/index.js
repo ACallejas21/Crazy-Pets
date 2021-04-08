@@ -8,8 +8,55 @@ import Signup from "../screens/Signup";
 import Home from "../screens/home";
 import addPets from "../screens/addPets";
 import passwordRecovery from "../screens/passwordRecovery";
+import Tips from "../screens/tips";
+import Profile from "../screens/profile";
+import detailsPets from "../screens/detailsPets";
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons'
+import {StyleSheet} from "react-native";
+
 
 const Stack = createStackNavigator();
+
+const Tab = createMaterialBottomTabNavigator();
+
+
+const myTabBar =() =>{
+
+  return(
+    <Tab.Navigator style={styles.tab}>
+      <Tab.Screen   name = "Home" 
+          component = {Home}
+          options={{
+            tabBarLabel: '',
+            tabBarIcon: () => (
+              <Icon name="home-outline" />
+            )
+
+          }}
+      />
+      <Tab.Screen   name = "Tips" 
+          component = {Tips}
+          options={{
+            tabBarLabel: 'Consejos',
+            tabBarIcon: () => (
+              <Icon name="chatbubbles-outline" />
+            )
+
+          }}
+      />
+      <Tab.Screen   name = "Profile" 
+          component = {Profile}
+          options={{
+            tabBarIcon: () => (
+              <Icon name="person-circle-outline" />
+            )
+
+          }}
+      />
+    </Tab.Navigator>
+  )
+}
 
 const Navigation = () => {
   const { state, persistLogin } = useContext(AuthContext);
@@ -33,12 +80,17 @@ const Navigation = () => {
             <Stack.Navigator>
               <Stack.Screen
                 name="Home"
-                component={Home}
+                component={myTabBar}
                 options={{ headerShown: false }}
               />
               <Stack.Screen
                 name="addPets"
                 component={addPets}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="detailsPets"
+                component={detailsPets}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
@@ -66,5 +118,11 @@ const Navigation = () => {
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  tab:{
+    color: "#607D8B",
+  }
+});
 
 export default Navigation;
