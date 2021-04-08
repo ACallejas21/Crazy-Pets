@@ -10,6 +10,8 @@ const petReducer = (state, action) => {
       return { ...state, pets: [...pets, action.payload] };
     case "getPets":
       return { ...state, pets: action.payload };
+    case "setCurrentPet":
+      return { ...state, currentNote: action.payload };
     default:
       return state;
   }
@@ -19,12 +21,14 @@ const petReducer = (state, action) => {
 const PetsRef = firebase.firestore().collection("mascotas");
 
 // Almacena una nueva nota para el usuario actual
-const createPet = (dispatch) => (title, content, timestamp, author) => {
+const createPet = (dispatch) => (nombre, edad, raza, descripcion, notas, autor) => {
   const data = {
-    title,
-    content,
-    timestamp,
-    userId: author,
+    nombre,
+    edad,
+    raza,
+    descripcion,
+    notas,
+    id: autor,
   };
 
   PetsRef
@@ -58,6 +62,9 @@ const getPets = (dispatch) => (userId) => {
       }
     );
 };
+const setCurrentPet = (dispatch) => (pet) => {
+  dispatch({ type: "setCurrentPet", payload: pet });
+};
 
 // Exportar las funcionalidades requeridas al contexto
 export const { Provider, Context } = createDataContext(
@@ -65,6 +72,7 @@ export const { Provider, Context } = createDataContext(
   {
     createPet,
     getPets,
+    setCurrentPet
   },
   {
     pets: [],
