@@ -30,6 +30,9 @@ const Home = ({navigation}) => {
     <Button title="cerrar sesión"  onPress={() => {
               signout();
             }} />
+    <Button title="agregar mascota"  onPress={() => {
+             navigation.navigate("addPets")
+            }} />
     </View>
     
   );
