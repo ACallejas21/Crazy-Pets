@@ -37,8 +37,8 @@ const PetsList = ({ navigation, pets }) => {
             //   }}
             >
               <PetsCard
-                Titulo={item.titulo}
-                descripcion={item.contenido}
+                nombre={item.nombre}
+                descripcion={item.descripcion}
               />
             </TouchableOpacity>
           </>
