@@ -6,7 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("screen");
 
-const PetsCard = ({Titulo, descripcion}) => {
+const PetsCard = ({nombre, descripcion}) => {
   return (
     <View style={styles.container}>
         <View style={styles.card}>
@@ -15,7 +15,7 @@ const PetsCard = ({Titulo, descripcion}) => {
                 source={ require("../../../assets/logo.png")}/>
             </View>
             <View style={{ flex: 0.6 }}>
-                <Text style={styles.nombre}>{Titulo}</Text>
+                <Text style={styles.nombre}>{nombre}</Text>
                 <Text style={styles.descrip}>{descripcion}
                 </Text>
                 <Icon style={styles.icon} name="arrow-right"></Icon>
