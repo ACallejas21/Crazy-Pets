@@ -1,5 +1,5 @@
 import React from "react";
-import { Provider as PaperProvider } from "react-native-paper";
+import {ThemeProvider } from 'react-native-elements';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navigation from "./src/components/navigation";
 import theme from "./src/theme";
@@ -16,11 +16,11 @@ export default function App() {
   return (
     <AuthProvider>
       <PetsContext>
-        <PaperProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <SafeAreaProvider>
             <Navigation />
           </SafeAreaProvider>
-        </PaperProvider>
+        </ThemeProvider>
         </PetsContext>
     </AuthProvider>
   );
