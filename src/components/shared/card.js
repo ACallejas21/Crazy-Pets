@@ -6,7 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("screen");
 
-const PetsCard = ({}) => {
+const PetsCard = ({nombre, descripcion}) => {
   return (
     <View style={styles.container}>
         <View style={styles.card}>
@@ -15,10 +15,8 @@ const PetsCard = ({}) => {
                 source={ require("../../../assets/logo.png")}/>
             </View>
             <View style={{ flex: 0.6 }}>
-                <Text style={styles.nombre}>Sazu</Text>
-                <Text>Hay determinados tipos de loros que hablan. 
-                    Estas aves son animales muy inteligentes y sociables, con la repetición de sonidos 
-                    o expresiones
+                <Text style={styles.nombre}>{nombre}</Text>
+                <Text style={styles.descrip}>{descripcion}
                 </Text>
                 <Icon style={styles.icon} name="arrow-right"></Icon>
             </View>
@@ -63,6 +61,10 @@ const styles = StyleSheet.create({
     color:"black",
     textAlign: "right",
     marginRight: 5,
+  }
+  ,
+  descrip:{
+    maxHeight:30
   }
 });
 
