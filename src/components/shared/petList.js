@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ScrollView
 } from "react-native";
 import { Context as PetsContext } from "../../providers/PetsContext";
 import PetsCard from "./card";
@@ -24,7 +25,7 @@ const PetsList = ({ navigation, pets }) => {
   );
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <FlatList
         data={pets}
         emptyFlatList={emptyFlatList}
@@ -44,7 +45,7 @@ const PetsList = ({ navigation, pets }) => {
           </>
         )}
       />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   emptyNotes: {
+    marginTop:10,
     flex: 1,
     justifyContent: "center",
     alignSelf: "center",
