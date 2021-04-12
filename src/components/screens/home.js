@@ -9,6 +9,7 @@ import {
 import { Avatar, ListItem, Header, Icon } from 'react-native-elements';
 import {firebase} from "../../firebase";
 import PetList from "../shared/petList";
+import Comment from "../shared/comment";
 import { Context as AuthContext } from "../../providers/AuthContext";
 import { Context as PetsContext } from "../../providers/PetsContext";
 

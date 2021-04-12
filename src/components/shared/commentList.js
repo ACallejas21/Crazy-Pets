@@ -7,16 +7,15 @@ import {
   View,
   ScrollView
 } from "react-native";
-import { Context as PetsContext } from "../../providers/PetsContext";
-import PetsCard from "./card";
+import { Context as TipsContext } from "../../providers/TipsContext";
+import Comment from "./comment";
 
-const PetsList = ({ navigation, pets }) => {
-  const { state, setCurrentNote } = useContext(PetsContext);
+const CommentList = ({ navigation, comments }) => {
+  const { state, setCurrentTip, deleteTip } = useContext(TipsContext);
 
-//   const handleSelectNote = (note) => {
-//     setCurrentNote(note);
-//     navigation.navigate("ModifyNote");
-//   };
+  const handleSelectTip = (tip) => {
+    setCurrentTip(tip);
+  };
 
   const emptyFlatList = (
     <View style={styles.emptyNotes}>
@@ -27,19 +26,19 @@ const PetsList = ({ navigation, pets }) => {
   return (
     <ScrollView style={styles.container}>
       <FlatList
-        data={pets}
+        data={comments}
         emptyFlatList={emptyFlatList}
         numColumns={1}
         renderItem={({ item }) => (
           <>
             <TouchableOpacity
-            //   onPress={() => {
-            //     handleSelectNote(item);
-            //   }}
+              onPress={() => {
+                handleSelectTip(item.id);
+              }}
             >
-              <PetsCard
-                nombre={item.nombre}
-                descripcion={item.descripcion}
+              <Comment
+                usuario={item.usuario}
+                comentario={item.comentario}
               />
             </TouchableOpacity>
           </>
@@ -54,11 +53,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   emptyNotes: {
-    marginTop:10,
     flex: 1,
     justifyContent: "center",
     alignSelf: "center",
   },
 });
 
-export default PetsList;
+export default CommentList;
