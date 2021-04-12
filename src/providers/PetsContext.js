@@ -11,7 +11,7 @@ const petReducer = (state, action) => {
     case "getPets":
       return { ...state, pets: action.payload };
     case "setCurrentPet":
-      return { ...state, currentNote: action.payload };
+      return { ...state, currentPet: action.payload };
     default:
       return state;
   }
