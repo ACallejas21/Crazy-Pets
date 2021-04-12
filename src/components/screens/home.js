@@ -4,8 +4,7 @@ import {
   StyleSheet,
   Text,
   View, 
-  Image, 
-  Button} from "react-native";
+  TouchableOpacity} from "react-native";
 import { Avatar, ListItem, Header, Icon } from 'react-native-elements';
 import {firebase} from "../../firebase";
 import PetList from "../shared/petList";
@@ -28,12 +27,11 @@ const Home = ({navigation}) => {
         <Text style={styles.header}>Crazy Pets</Text>
     </Header>
     <PetList pets={petsState.pets} navigation={navigation} />
-    <Button title="cerrar sesión"  onPress={() => {
-              signout();
-            }} />
-    <Button title="agregar mascota"  onPress={() => {
+    <TouchableOpacity style={styles.boton} onPress={() => {
              navigation.navigate("addPets")
-            }} />
+            }} >
+            <Icon name="add"/>
+    </TouchableOpacity>
     </View>
     
   );
@@ -49,6 +47,19 @@ const styles = StyleSheet.create({
   header:{
     color: "#fff",
   },
+  boton:{
+    position: "absolute",
+    right: 0,
+    margin: 20,
+    top: height * 0.75,
+    alignItems:'center',
+    justifyContent:'center',
+    width:50,
+    height:50,
+    backgroundColor:'#4CAF50',
+    borderRadius:50,
+
+  }
   
 });
 
