@@ -11,12 +11,12 @@ import { Context as PetsContext } from "../../providers/PetsContext";
 import PetsCard from "./card";
 
 const PetsList = ({ navigation, pets }) => {
-  const { state, setCurrentNote } = useContext(PetsContext);
+  const { state, setCurrentPet } = useContext(PetsContext);
 
-//   const handleSelectNote = (note) => {
-//     setCurrentNote(note);
-//     navigation.navigate("ModifyNote");
-//   };
+  const handleSelectPet = (pet) => {
+    setCurrentPet(pet);
+    navigation.navigate("editPet");
+  };
 
   const emptyFlatList = (
     <View style={styles.emptyNotes}>
@@ -33,9 +33,9 @@ const PetsList = ({ navigation, pets }) => {
         renderItem={({ item }) => (
           <>
             <TouchableOpacity
-            //   onPress={() => {
-            //     handleSelectNote(item);
-            //   }}
+              onPress={() => {
+                handleSelectPet(item);
+              }}
             >
               <PetsCard
                 nombre={item.nombre}
