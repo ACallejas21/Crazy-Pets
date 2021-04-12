@@ -12,6 +12,23 @@ const petReducer = (state, action) => {
       return { ...state, pets: action.payload };
     case "setCurrentPet":
       return { ...state, currentPet: action.payload };
+    case "updatePet":
+      return {
+        ...state,
+        pets: state.pets.map((pet) => {
+          if (pet.id === action.payload.pet.id) {
+            return {
+              ...pet,
+              nombre: action.payload.pet.nombre,
+              edad: action.payload.pet.edad,
+              raza: action.payload.pet.raza,
+              descripcion: action.payload.pet.descripcion,
+              notas: action.payload.pet.notas,
+            };
+          }
+          return pet;
+        }),
+      };
     default:
       return state;
   }
@@ -66,13 +83,31 @@ const setCurrentPet = (dispatch) => (pet) => {
   dispatch({ type: "setCurrentPet", payload: pet });
 };
 
+const updatePet = (dispatch) => (id, nombre, edad, raza, descripcion, notas) => {
+  PetsRef
+    .doc(id)
+    .update({ nombre, edad, raza, descripcion, notas })
+    .then(() => {
+      dispatch({
+        type: "updatePet",
+        payload: { pet: { id, nombre, edad, raza, descripcion, notas} },
+      });
+      dispatch({ type: "errorMessage", payload: "Note updated!" });
+    })
+    .catch((error) => {
+      dispatch({ type: "errorMessage", payload: error.message });
+    });
+};
+
+
 // Exportar las funcionalidades requeridas al contexto
 export const { Provider, Context } = createDataContext(
   petReducer,
   {
     createPet,
     getPets,
-    setCurrentPet
+    setCurrentPet,
+    updatePet
   },
   {
     pets: [],

@@ -11,9 +11,11 @@ import passwordRecovery from "../screens/passwordRecovery";
 import Tips from "../screens/tips";
 import Profile from "../screens/profile";
 import detailsPets from "../screens/detailsPets";
+import editPet from "../screens/editPet";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons'
 import {StyleSheet} from "react-native";
+
 
 
 const Stack = createStackNavigator();
@@ -96,6 +98,11 @@ const Navigation = () => {
               <Stack.Screen
                 name="detailsPets"
                 component={detailsPets}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="editPet"
+                component={editPet}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
