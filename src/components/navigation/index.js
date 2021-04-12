@@ -24,11 +24,16 @@ const Tab = createMaterialBottomTabNavigator();
 const myTabBar =() =>{
 
   return(
-    <Tab.Navigator style={styles.tab}>
+    <Tab.Navigator
+      initialRouteName="Home"
+      activeColor="#f0edf6"
+      inactiveColor="#000"
+      barStyle={{ backgroundColor: '#607D8B' }}
+      >
       <Tab.Screen   name = "Home" 
           component = {Home}
           options={{
-            tabBarLabel: '',
+         
             tabBarIcon: () => (
               <Icon name="home-outline" />
             )
@@ -120,8 +125,8 @@ const Navigation = () => {
 };
 
 const styles = StyleSheet.create({
-  tab:{
-    color: "#607D8B",
+  header:{
+    backgroundColor: "#455A64",
   }
 });
 
