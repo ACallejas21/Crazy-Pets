@@ -12,6 +12,8 @@ const petReducer = (state, action) => {
       return { ...state, pets: action.payload };
     case "setCurrentPet":
       return { ...state, currentPet: action.payload };
+    case "deletePet":
+        return { ...state, pets: action.payload };
     case "updatePet":
       return {
         ...state,
@@ -79,6 +81,20 @@ const getPets = (dispatch) => (userId) => {
       }
     );
 };
+
+const deletePet = (dispatch) => (id) => {
+  PetsRef
+    .doc(id)
+    .delete()
+    .then((_doc) => {
+      dispatch({ type: "errorMessage", payload: "Pet deleted" });
+    })
+    .catch((error) => {
+      dispatch({ type: "errorMessage", payload: error.message });
+    });
+};
+
+
 const setCurrentPet = (dispatch) => (pet) => {
   dispatch({ type: "setCurrentPet", payload: pet });
 };
@@ -107,7 +123,8 @@ export const { Provider, Context } = createDataContext(
     createPet,
     getPets,
     setCurrentPet,
-    updatePet
+    updatePet, 
+    deletePet
   },
   {
     pets: [],
