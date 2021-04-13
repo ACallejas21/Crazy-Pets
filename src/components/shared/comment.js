@@ -20,12 +20,13 @@ const comment = ({usuario, comentario}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 25,
   },
   usuario: {
       textAlign: "left",
       fontSize: 15,
       marginTop:5,
+      marginLeft: 25,
   },
   comentario: {
     fontSize: 20,
