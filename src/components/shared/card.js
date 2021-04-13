@@ -10,15 +10,14 @@ const PetsCard = ({nombre, descripcion}) => {
   return (
     <View style={styles.container}>
         <View style={styles.card}>
-            <View style={{flex: 0.4 }}>
+            <View style={{flex: 0.3 }}>
                 <Image style={styles.logo}
                 source={ require("../../../assets/logo.png")}/>
             </View>
-            <View style={{ flex: 0.6 }}>
-                <Text style={styles.nombre}>{nombre}</Text>
+            <View style={{ flex: 0.7 }}>
+                <Text style={styles.titulo}>{nombre}</Text>
                 <Text style={styles.descrip}>{descripcion}
                 </Text>
-                <Icon style={styles.icon} name="arrow-right"></Icon>
             </View>
         </View>
     </View>
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
   },
   nombre:{
-      fontSize: 18,
+      fontSize: 22,
       textAlign: "center",
   },
   icon:{
