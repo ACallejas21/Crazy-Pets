@@ -35,9 +35,9 @@ const myTabBar =() =>{
       <Tab.Screen   name = "Home" 
           component = {Home}
           options={{
-         
+            tabBarLabel: 'Inicio',
             tabBarIcon: () => (
-              <Icon name="home-outline" />
+              <Icon style={styles.icon}  name="home-outline" />
             )
 
           }}
@@ -47,7 +47,7 @@ const myTabBar =() =>{
           options={{
             tabBarLabel: 'Consejos',
             tabBarIcon: () => (
-              <Icon name="chatbubbles-outline" />
+              <Icon style={styles.icon} name="chatbubbles-outline" />
             )
 
           }}
@@ -55,8 +55,9 @@ const myTabBar =() =>{
       <Tab.Screen   name = "Profile" 
           component = {Profile}
           options={{
+            tabBarLabel: 'Perfil',
             tabBarIcon: () => (
-              <Icon name="person-circle-outline" />
+              <Icon style={styles.icon} name="person-circle-outline" />
             )
 
           }}
@@ -134,6 +135,9 @@ const Navigation = () => {
 const styles = StyleSheet.create({
   header:{
     backgroundColor: "#455A64",
+  },
+  icon:{
+    fontSize: 20,
   }
 });
 
