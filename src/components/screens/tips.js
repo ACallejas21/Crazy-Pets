@@ -1,5 +1,5 @@
 import React, { useState,useContext, useEffect } from "react";
-import { StyleSheet, View, Dimensions} from "react-native";
+import { StyleSheet, View, Dimensions, TouchableOpacity, TextInput} from "react-native";
 import { Input, Button, Text,SocialIcon } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome5 } from '@expo/vector-icons'; 
@@ -24,7 +24,7 @@ const Tips = ({navigation}) => {
   console.log(tipsState.currentTip);
 
  return (
-    <View>
+    <View style={styles.container}>
         <Logo/>
         <Text >Tips</Text>
       <Input
@@ -34,14 +34,15 @@ const Tips = ({navigation}) => {
         onChangeText={setComentario}
 
       />
-      <Button title="agregar comentario"  onPress={() => {
-             createTip(comentario, state.user.user);
-            }} />
-      <Button title="borrar comentario"  onPress={() => {
-             deleteTip(tipsState.currentTip);
-            }} />
+       <TouchableOpacity style={styles.boton} onPress={() => {
+                 createTip(comentario, state.user.user);
+                }} >
+                <Icon style={styles.icon}  name="save"/>
+        </TouchableOpacity>
 
       <CommentList comments={tipsState.tips}/>
+
+      
       
     </View>
   );
@@ -55,7 +56,40 @@ const styles = StyleSheet.create({
       },
     button:{
         padding:15
-    }
+    },
+    icon:{
+      fontSize: 20,
+    },
+    container:{
+      flex:1,
+      padding:20,
+    },
+    boton:{
+      flex:1,
+      position: "absolute",
+      right: 0,
+      top: height * 0.35,
+      marginRight: 15,
+      alignItems:'center',
+      justifyContent:'center',
+      width:40,
+      height:40,
+      backgroundColor:'#4CAF50',
+      borderRadius:50,
+  
+    },
+    searchIcon: {
+      padding: 10,
+  },
+  input: {
+      flex: 1,
+      paddingTop: 10,
+      paddingRight: 10,
+      paddingBottom: 10,
+      paddingLeft: 0,
+      backgroundColor: '#fff',
+      color: '#424242',
+  },
 });
 
 export default Tips;
