@@ -15,7 +15,7 @@ const PetsList = ({ navigation, pets }) => {
 
   const handleSelectPet = (pet) => {
     setCurrentPet(pet);
-    navigation.navigate("editPet");
+    navigation.navigate("detailsPets");
   };
 
   const emptyFlatList = (
