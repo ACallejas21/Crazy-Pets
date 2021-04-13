@@ -1,5 +1,5 @@
 import React, { useContext,useEffect, useState } from "react";
-import { StyleSheet, View, Dimensions} from "react-native";
+import { StyleSheet, View, Dimensions, TouchableOpacity} from "react-native";
 import { Input, Button, Text,SocialIcon } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome5 } from '@expo/vector-icons'; 
@@ -67,7 +67,7 @@ const PetForm = ({navigation}) => {
     };
 
  return (
-    <View>
+    <View style={styles.container}>
         <Logo/>
         <Text style={styles.text} h5>Ingresa tu mascota!</Text>
         {error ? <Alert title={error} type="error" /> : null}
@@ -135,14 +135,28 @@ const PetForm = ({navigation}) => {
         onChangeText={setNotas}
 
       />
-          <Button title="agregar mascota"  onPress={() => {
+
+
+    <TouchableOpacity style={styles.boton} onPress={() => {
             handleSavePet();
-          }} />
+            }} >
+            <Icon style={styles.icon}  name="save"/>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.botonback} onPress={() => {  
+             navigation.navigate("Home")
+
+            }} >
+            <Icon style={styles.icon} name="arrow-left"/>
+    </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    padding:20,
+  },
     text: {
         textAlign: "center",
         marginTop: 30,
@@ -150,6 +164,37 @@ const styles = StyleSheet.create({
       },
     button:{
         padding:15
+    },
+    boton:{
+      flex:1,
+      position: "absolute",
+      right: width*0.04,
+      margin: 20,
+      top: height * 0.80,
+      alignItems:'center',
+      justifyContent:'center',
+      width:50,
+      height:50,
+      backgroundColor:'#4CAF50',
+      borderRadius:50,
+  
+    },
+    botonback:{
+      flex:1,
+      position: "absolute",
+      right: 0,
+      margin: 20,
+      top: height * 0.80,
+      alignItems:'center',
+      justifyContent:'center',
+      width:50,
+      height:50,
+      backgroundColor:'red',
+      borderRadius:50,
+  
+    },
+    icon:{
+      fontSize: 20,
     }
 });
 
