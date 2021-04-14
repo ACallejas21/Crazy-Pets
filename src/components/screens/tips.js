@@ -29,7 +29,7 @@ const Tips = ({navigation}) => {
         <Text >Tips</Text>
       <Input
         placeholder="Comentario"
-        leftIcon={<FontAwesome5 name="dog" size={24} color="black" />}
+        leftIcon={<FontAwesome5 name="comment" size={24} color="black" />}
         value={comentario}
         onChangeText={setComentario}
 
