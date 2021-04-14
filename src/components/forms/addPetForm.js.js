@@ -67,6 +67,7 @@ const PetForm = ({navigation}) => {
     };
 
  return (
+   <>
     <ScrollView style={styles.container}>
         <Logo/>
         <Text style={styles.text} h5>Ingresa tu mascota!</Text>
@@ -135,12 +136,13 @@ const PetForm = ({navigation}) => {
         onChangeText={setNotas}
 
       />
+    </ScrollView>
     <TouchableOpacity style={styles.boton} onPress={() => {
             handleSavePet();
             }} >
             <Icon style={styles.icon}  name="save"/>
     </TouchableOpacity>
-    </ScrollView>
+    </>
   );
 };
 
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
       flex:1,
       position: "absolute",
       right: 0,
-      top: height * 0.75,
+      top: height * 0.85,
       alignItems:'center',
       justifyContent:'center',
       width:50,

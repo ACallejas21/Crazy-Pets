@@ -72,6 +72,7 @@ const EditPet = ({navigation}) => {
       };
 
  return (
+   <>
     <ScrollView style={styles.container}>
         <Logo/>
         <Text style={styles.text} h5>Ingresa tu mascota!</Text>
@@ -141,12 +142,14 @@ const EditPet = ({navigation}) => {
 
       />
 
-      <TouchableOpacity style={styles.boton} onPress={() => {
+     
+    </ScrollView>
+    <TouchableOpacity style={styles.boton} onPress={() => {
             handleSavePet();
             }} >
             <Icon style={styles.icon} name="save"/>
     </TouchableOpacity>
-    </ScrollView>
+    </>
   );
 };
 
@@ -167,7 +170,7 @@ const styles = StyleSheet.create({
       flex:1,
       position: "absolute",
       right: width*0.04,
-      top: height * 0.75,
+      top: height * 0.88,
       alignItems:'center',
       justifyContent:'center',
       width:50,

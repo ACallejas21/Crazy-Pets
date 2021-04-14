@@ -37,6 +37,7 @@ const DetailsPets = ({navigation}) => {
       console.log(petsState.currentPet)
     
  return (
+   <>
     <View style={styles.container}>
         <Logo/>
       <Text>Nombre</Text>
@@ -85,7 +86,8 @@ const DetailsPets = ({navigation}) => {
         disabled
 
       /> 
-          <TouchableOpacity style={styles.boton} onPress={() => {
+    </View>
+    <TouchableOpacity style={styles.boton} onPress={() => {
                 navigation.navigate("editPet")
                 }} >
                 <Icon style={styles.icon} name="edit"/>
@@ -97,7 +99,7 @@ const DetailsPets = ({navigation}) => {
                 }} >
                 <Icon style={styles.icon} name="trash"/>
         </TouchableOpacity>
-    </View>
+    </>
   );
 };
 
@@ -119,8 +121,7 @@ const styles = StyleSheet.create({
       flex:1,
       position: "absolute",
       right: 0,
-      margin: 20,
-      top: height * 0.72,
+      top: height * 0.78,
       alignItems:'center',
       justifyContent:'center',
       width:50,
@@ -133,8 +134,7 @@ const styles = StyleSheet.create({
       flex:1,
       position: "absolute",
       right: 0,
-      margin: 20,
-      top: height * 0.80,
+      top: height * 0.88,
       alignItems:'center',
       justifyContent:'center',
       width:50,
