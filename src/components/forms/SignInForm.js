@@ -94,8 +94,8 @@ const SigninForm = ({navigation}) => {
 const styles = StyleSheet.create({
   signUpGoogle: {
     textAlign: "center",
-    marginTop: width*0.04,
-    marginBottom: width*0.04,
+    marginTop: width*0.02,
+    marginBottom: width*0.02,
     fontSize: 15,
   
   },
