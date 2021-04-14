@@ -5,13 +5,15 @@ import {
   Text,
   View, 
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { Avatar, ListItem, Icon } from 'react-native-elements';
 import {firebase} from "../../firebase";
 import PetList from "../shared/petList";
-import Comment from "../shared/comment";
+import PetsCard from "../shared/card";
 import { Context as AuthContext } from "../../providers/AuthContext";
 import { Context as PetsContext } from "../../providers/PetsContext";
+import { ScrollView } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -23,15 +25,17 @@ const Home = ({navigation}) => {
   }, []);
 
   return (
-    <View styles={styles.conteiner}>
-    <PetList pets={petsState.pets} navigation={navigation} />
+    <>
+    <ScrollView styles={styles.conteiner}>
+      <PetList pets={petsState.pets} navigation={navigation} />
+
+    </ScrollView>
     <TouchableOpacity style={styles.boton} onPress={() => {
              navigation.navigate("addPets")
             }} >
             <Icon name="add"/>
     </TouchableOpacity>
-    </View>
-    
+    </>
   );
 };
 
@@ -40,7 +44,6 @@ const styles = StyleSheet.create({
   conteiner:{
     flex: 1,
     padding: 15,
-    marginTop: width*0.5,
   },
   header:{
     color: "#fff",
