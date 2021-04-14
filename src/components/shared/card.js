@@ -10,11 +10,11 @@ const PetsCard = ({nombre, descripcion}) => {
   return (
     <View style={styles.container}>
         <View style={styles.card}>
-            <View style={{flex: 0.3 }}>
+            <View style={{flex: 0.4 }}>
                 <Image style={styles.logo}
                 source={ require("../../../assets/logo.png")}/>
             </View>
-            <View style={{ flex: 0.7 }}>
+            <View style={{ flex: 0.6 }}>
                 <Text style={styles.titulo}>{nombre}</Text>
                 <Text style={styles.descrip}>{descripcion}
                 </Text>

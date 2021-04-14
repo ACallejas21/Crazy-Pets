@@ -35,8 +35,7 @@ const styles = StyleSheet.create({
 card:{
     flexDirection: "row",
     height: height*0.19,
-    width: width*0.91,
-    marginRight: width * 0.02,
+    width: width*0.78,
     backgroundColor: "#fff",
     borderColor: "#000",
     borderWidth: 2,
