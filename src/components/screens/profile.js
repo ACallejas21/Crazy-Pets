@@ -35,13 +35,6 @@ const Profile = ({navigation}) => {
         <Text h5 style={styles.text}>{state.user.user}</Text>
         <Text h4 style={styles.text}>Correo</Text>
         <Text h5 style={styles.text}>{state.user.email}</Text>
-
-       
-        <TouchableOpacity style={styles.boton} onPress={() => {
-             signout();
-            }} >
-            <Icon style={styles.icon} name="sign-out"/>
-    </TouchableOpacity>
     </View>
 
   );
