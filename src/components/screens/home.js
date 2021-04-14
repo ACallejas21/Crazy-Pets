@@ -4,8 +4,9 @@ import {
   StyleSheet,
   Text,
   View, 
-  TouchableOpacity} from "react-native";
-import { Avatar, ListItem, Header, Icon } from 'react-native-elements';
+  TouchableOpacity,
+} from "react-native";
+import { Avatar, ListItem, Icon } from 'react-native-elements';
 import {firebase} from "../../firebase";
 import PetList from "../shared/petList";
 import Comment from "../shared/comment";
@@ -23,9 +24,6 @@ const Home = ({navigation}) => {
 
   return (
     <View styles={styles.conteiner}>
-      <Header>
-        <Text style={styles.header}>Crazy Pets</Text>
-    </Header>
     <PetList pets={petsState.pets} navigation={navigation} />
     <TouchableOpacity style={styles.boton} onPress={() => {
              navigation.navigate("addPets")
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     margin: 20,
-    top: height * 0.75,
+    top: height * 0.65,
     alignItems:'center',
     justifyContent:'center',
     width:50,
