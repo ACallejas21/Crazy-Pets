@@ -169,10 +169,10 @@ const Navigation = () => {
 
 const styles = StyleSheet.create({
   header:{
-    width: width*0.17,
-    height: 50,   
-    marginLeft: width*0.38, 
-    flex:1
+    width: width*0.70,
+    height: 55,   
+    flex:1,
+    marginLeft: width*0.1
   },
   icon:{
     fontSize: 20,
