@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       width:50,
       height:50,
-      backgroundColor:'red',
+      backgroundColor:'#4CAF61',
       borderRadius:50,
   
     },
