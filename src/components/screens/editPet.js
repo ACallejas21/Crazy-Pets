@@ -153,7 +153,6 @@ const EditPet = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     padding: 25,
   },
     text: {
@@ -168,8 +167,7 @@ const styles = StyleSheet.create({
       flex:1,
       position: "absolute",
       right: width*0.04,
-      margin: 20,
-      top: height * 0.88,
+      top: height * 0.75,
       alignItems:'center',
       justifyContent:'center',
       width:50,
