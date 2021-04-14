@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react";
+import {Button, Image, TouchableOpacity, Dimensions} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 //import * as SplashScreen from "expo-splash-screen";
 import { Context as AuthContext } from "../../providers/AuthContext";
+import Icon from "react-native-vector-icons/FontAwesome";
 import Signin from "../screens/SignIn";
 import Signup from "../screens/Signup";
 import Home from "../screens/home";
@@ -13,31 +15,44 @@ import Profile from "../screens/profile";
 import detailsPets from "../screens/detailsPets";
 import editPet from "../screens/editPet";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Icon from 'react-native-vector-icons/Ionicons'
+
 import {StyleSheet} from "react-native";
 
 
+const { width, height } = Dimensions.get("screen");
 
 const Stack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
+function LogoTitle() {
+  return (
+    <Image
+      style={styles.header}
+      source={require("../../../assets/titulo.png")}
+      
+    />
+    
+  );
+}
+
 
 const myTabBar =() =>{
+
 
   return(
     <Tab.Navigator
       initialRouteName="Home"
       activeColor="#f0edf6"
       inactiveColor="#000"
-      barStyle={{ backgroundColor: '#607D8B' }}
+      barStyle={{ backgroundColor: '#4CAF61' }}
       >
       <Tab.Screen   name = "Home" 
           component = {Home}
           options={{
             tabBarLabel: 'Inicio',
             tabBarIcon: () => (
-              <Icon style={styles.icon}  name="home-outline" />
+              <Icon style={styles.icon}  name="home" />
             )
 
           }}
@@ -47,7 +62,7 @@ const myTabBar =() =>{
           options={{
             tabBarLabel: 'Consejos',
             tabBarIcon: () => (
-              <Icon style={styles.icon} name="chatbubbles-outline" />
+              <Icon style={styles.icon} name="comments" />
             )
 
           }}
@@ -57,7 +72,7 @@ const myTabBar =() =>{
           options={{
             tabBarLabel: 'Perfil',
             tabBarIcon: () => (
-              <Icon style={styles.icon} name="person-circle-outline" />
+              <Icon style={styles.icon} name="user" />
             )
 
           }}
@@ -67,7 +82,7 @@ const myTabBar =() =>{
 }
 
 const Navigation = () => {
-  const { state, persistLogin } = useContext(AuthContext);
+  const { state, persistLogin, signout } = useContext(AuthContext);
 
   // Verificar si ya existen credenciales de autenticación
   useEffect(() => {
@@ -85,11 +100,31 @@ const Navigation = () => {
       {!state.loading && (
         <>
           {state.loggedIn ? (
-            <Stack.Navigator>
-              <Stack.Screen
+            <Stack.Navigator
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: '#4caf50',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}>
+              <Stack.Screen style={styles.header}
                 name="Home"
                 component={myTabBar}
-                options={{ headerShown: false }}
+                options={{
+                  title: 'My home',
+                  headerTitle: props => <LogoTitle {...props} />,
+                  headerRight: () => (
+                    <TouchableOpacity style={styles.boton} onPress={() => {
+                      signout();
+                     }} >
+                     <Icon style={styles.icon2} name="sign-out"/>
+                  </TouchableOpacity>
+                  )
+                
+                }}
               />
               <Stack.Screen
                 name="addPets"
@@ -134,11 +169,19 @@ const Navigation = () => {
 
 const styles = StyleSheet.create({
   header:{
-    backgroundColor: "#455A64",
+    width: width*0.17,
+    height: 50,   
+    marginLeft: width*0.38, 
+    flex:1
   },
   icon:{
     fontSize: 20,
-  }
+  },
+  icon2:{
+    fontSize: 30,
+
+
+  },
 });
 
 export default Navigation;
