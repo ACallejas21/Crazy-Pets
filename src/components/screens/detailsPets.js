@@ -97,12 +97,6 @@ const DetailsPets = ({navigation}) => {
                 }} >
                 <Icon style={styles.icon} name="trash"/>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botonback} onPress={() => {  
-                navigation.navigate("Home")
-
-                }} >
-                <Icon style={styles.icon} name="arrow-left"/>
-        </TouchableOpacity>
     </View>
   );
 };
@@ -126,7 +120,7 @@ const styles = StyleSheet.create({
       position: "absolute",
       right: 0,
       margin: 20,
-      top: height * 0.68,
+      top: height * 0.80,
       alignItems:'center',
       justifyContent:'center',
       width:50,
@@ -135,27 +129,12 @@ const styles = StyleSheet.create({
       borderRadius:50,
   
     },
-    botonback:{
-      flex:1,
-      position: "absolute",
-      right: 0,
-      margin: 20,
-      top: height * 0.80,
-      alignItems:'center',
-      justifyContent:'center',
-      width:50,
-      height:50,
-      backgroundColor:'#4CAF61',
-      borderRadius:50,
-  
-    },
-
     botondelete:{
       flex:1,
       position: "absolute",
       right: 0,
       margin: 20,
-      top: height * 0.74,
+      top: height * 0.88,
       alignItems:'center',
       justifyContent:'center',
       width:50,

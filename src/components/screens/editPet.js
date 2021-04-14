@@ -1,5 +1,5 @@
 import React, { useContext,useEffect, useState } from "react";
-import { StyleSheet, View, Dimensions, TouchableOpacity} from "react-native";
+import { StyleSheet, View, Dimensions, TouchableOpacity, ScrollView} from "react-native";
 import { Input, Button, Text,SocialIcon } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { FontAwesome5 } from '@expo/vector-icons'; 
@@ -72,7 +72,7 @@ const EditPet = ({navigation}) => {
       };
 
  return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
         <Logo/>
         <Text style={styles.text} h5>Ingresa tu mascota!</Text>
         {/* {error ? <Alert title={error} type="error" /> : null} */}
@@ -146,13 +146,7 @@ const EditPet = ({navigation}) => {
             }} >
             <Icon style={styles.icon} name="save"/>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.botonback} onPress={() => {  
-             navigation.navigate("detailsPets")
-
-            }} >
-            <Icon style={styles.icon}  name="arrow-left"/>
-    </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -175,26 +169,12 @@ const styles = StyleSheet.create({
       position: "absolute",
       right: width*0.04,
       margin: 20,
-      top: height * 0.80,
+      top: height * 0.88,
       alignItems:'center',
       justifyContent:'center',
       width:50,
       height:50,
       backgroundColor:'#4CAF50',
-      borderRadius:50,
-  
-    },
-    botonback:{
-      flex:1,
-      position: "absolute",
-      right: 0,
-      margin: 20,
-      top: height * 0.80,
-      alignItems:'center',
-      justifyContent:'center',
-      width:50,
-      height:50,
-      backgroundColor:'red',
       borderRadius:50,
   
     },
